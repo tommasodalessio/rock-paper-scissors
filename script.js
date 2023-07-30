@@ -19,7 +19,7 @@ else {
 //return the value +
 return answer;
 }
-function game (playerSelection, computerSelection) {
+function playRound (playerSelection, computerSelection) {
     //made a varible that contains the answer
     let answer_value;
     // made the playerSelection and the computerSelection case insensitive  

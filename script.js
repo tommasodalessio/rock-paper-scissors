@@ -26,7 +26,6 @@ function playRound (playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
     //check the playerSelection if it's diffenent from rock paper or scissors
-    console.log(computerSelection);
     if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors"){
         //if they are the same -> drawn
         if (playerSelection == computerSelection) {
@@ -56,9 +55,40 @@ function playRound (playerSelection, computerSelection) {
     
     }
     else {
-        answer_value = "Invalid player selection, try again";
+        console.log("Invalid player selection, try again");
     }
     return answer_value;
 }
+function game () {
+    // make a varibale for the numbers of round and for the counter of the win
+    let numberRound = 5;
+    let counter_user = 0, counter_computer = 0;
+    //play 5 rounds 
+        // for each round take the input from the users with prompt()
+        for (i = 0; i < numberRound; i++) {
+            // for each round state the andwar 
+            let usersSelection = prompt("insert your value");
+            let answer = playRound(usersSelection, getComputerChoice());
+            console.log(answer);
+            // keep the score 
+                //define a variable contains to win to check if i win or lose
+            let substr_win = "Win", substr_lost = "Lost";
+            if (answer.includes(substr_win)){
+                counter_user ++;
+            }
+            else if (answer.includes(substr_lost)){
+                counter_computer ++;
+            }
+        }
+    // disply the winner
+    if (counter_computer > counter_user){
+        console.log ("You Lost!");
+    }
+    else {
+        console.log ("You Win!");
+    }
+    console.log("computer: " + counter_computer);
+    console.log("user: " + counter_user);
+}
 
-
+game();

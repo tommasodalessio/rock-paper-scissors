@@ -1,65 +1,5 @@
 
-function getComputerChoice () {
-//create a varible for the return value
-let answer;
-//use the method random, asking a random number from o to 2 
-let x = Math.floor(Math.random() * 3);
-//if the number is 0 -> Rock 
-if (x == 0) {
-    answer = "Rock";
-}
-//if the number is 1 -> Paper 
-else if (x == 1) {
-    answer = "Paper";
-}
-//if the number is 2 -> Scissors 
-else {
-    answer = "Scissors";
-}
-//return the value +
-return answer;
-}
-function playRound (playerSelection, computerSelection) {
-    //made a varible that contains the answer
-    let answer_value;
-    // made the playerSelection and the computerSelection case insensitive  
-    playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase();
-    //check the playerSelection if it's diffenent from rock paper or scissors
-    if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors"){
-        //if they are the same -> drawn
-        if (playerSelection == computerSelection) {
-            answer_value = "It's a drawn, sad!!"
-        }
-        //if they are different: 
-        else {
-            //  - rock beats scissors 
-            if (playerSelection == "rock" && computerSelection == "scissors"){
-                answer_value = "You Win! Rock beats Scissors";
-            }
-            //  - scissors beats paper 
-            else if (playerSelection == "scissors" && computerSelection == "paper"){
-                answer_value = "You Win! Scissors beats Paper";
-            }
-            //  - paper beats rock 
-            else if (playerSelection == "paper" && computerSelection == "rock"){
-                answer_value = "You Win! Paper beats Rock";
-            }
-            else {
-                playerSelection = playerSelection[0].toUpperCase() + playerSelection.substring(1);
-                computerSelection = computerSelection[0].toUpperCase() + computerSelection.substring(1);
-                answer_value = "You Lost! " + computerSelection + " beats " + playerSelection;
-            }
-
-        }
-    
-    }
-    else {
-        console.log("Invalid player selection, try again");
-    }
-    return answer_value;
-}
-function game () {
+/*function game () {
     // make a varibale for the numbers of round and for the counter of the win
     let numberRound = 5;
     let counter_user = 0, counter_computer = 0;
@@ -90,5 +30,38 @@ function game () {
     console.log("computer: " + counter_computer);
     console.log("user: " + counter_user);
 }
+*/
 
-game();
+//function for the single game
+function playRound (playerChoice) {
+    // Genera una scelta casuale per il computer
+    const choices = ['PAPER', 'SCISSORS', 'ROCK'];
+    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+    // Determina il risultato del gioco
+    let result;
+    if (playerChoice === computerChoice) {
+        result = "It's a DRAW";
+    } else if (
+        (playerChoice === 'SCISSORS' && computerChoice === 'PAPER') ||
+        (playerChoice === 'ROCK' && computerChoice === 'SCISSORS') ||
+        (playerChoice === 'PAPER' && computerChoice === 'ROCK')
+    ) {
+        result = "You  WIN!";
+    } else {
+        result = "You LOST!";
+    }
+
+    // Mostra il risultato al giocatore
+    alert(`You chose: ${playerChoice}\nComputer chose: ${computerChoice}\nResults: ${result}`);
+}
+
+//interactive buttons
+const btn = document.querySelectorAll('.choice');
+btn.forEach(button => {
+    button.addEventListener('click', function () {
+        playRound(this.value);
+    });
+});
+
+//interactive div to show the result

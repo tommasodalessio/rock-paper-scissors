@@ -53,15 +53,26 @@ function playRound (playerChoice) {
     }
 
     // Mostra il risultato al giocatore
-    alert(`You chose: ${playerChoice}\nComputer chose: ${computerChoice}\nResults: ${result}`);
+    //alert(`You chose: ${playerChoice}\nComputer chose: ${computerChoice}\nResults: ${result}`);
+    const container = document.querySelector('#container');
+    
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.textContent = result + ' You chose ' + playerChoice + ', Computer chose ' + computerChoice + '!'; 
+
+    container.appendChild(content);
+    
 }
+
 
 //interactive buttons
 const btn = document.querySelectorAll('.choice');
+
 btn.forEach(button => {
     button.addEventListener('click', function () {
         playRound(this.value);
     });
 });
 
-//interactive div to show the result
+
+

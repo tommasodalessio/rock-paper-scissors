@@ -1,40 +1,18 @@
+let playScore = 0;
+let computerScore = 0;
+const maxScore = 5;
 
-/*function game () {
-    // make a varibale for the numbers of round and for the counter of the win
-    let numberRound = 5;
-    let counter_user = 0, counter_computer = 0;
-    //play 5 rounds 
-        // for each round take the input from the users with prompt()
-        for (i = 0; i < numberRound; i++) {
-            // for each round state the andwar 
-            let usersSelection = prompt("insert your value");
-            let answer = playRound(usersSelection, getComputerChoice());
-            console.log(answer);
-            // keep the score 
-                //define a variable contains to win to check if i win or lose
-            let substr_win = "Win", substr_lost = "Lost";
-            if (answer.includes(substr_win)){
-                counter_user ++;
-            }
-            else if (answer.includes(substr_lost)){
-                counter_computer ++;
-            }
-        }
-    // disply the winner
-    if (counter_computer > counter_user){
-        console.log ("You Lost!");
-    }
-    else {
-        console.log ("You Win!");
-    }
-    console.log("computer: " + counter_computer);
-    console.log("user: " + counter_user);
-}
-*/
+//interactive buttons
+const btn = document.querySelectorAll('.choice');
 
-//function for the single game
+btn.forEach(button => {
+    button.addEventListener('click', function () {         
+        playRound(this.value);
+    });
+});
+
+
 function playRound (playerChoice) {
-    // Genera una scelta casuale per il computer
     const choices = ['PAPER', 'SCISSORS', 'ROCK'];
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
@@ -48,10 +26,11 @@ function playRound (playerChoice) {
         (playerChoice === 'PAPER' && computerChoice === 'ROCK')
     ) {
         result = "You  WIN!";
+        playScore++; //number one rapresents the winning of the user
     } else {
         result = "You LOST!";
+        computerScore++; //number 2 rapresents the winning of the computer
     }
-
     // Mostra il risultato al giocatore
     //alert(`You chose: ${playerChoice}\nComputer chose: ${computerChoice}\nResults: ${result}`);
     const container = document.querySelector('#container');
@@ -60,19 +39,47 @@ function playRound (playerChoice) {
     content.classList.add('content');
     content.textContent = result + ' You chose ' + playerChoice + ', Computer chose ' + computerChoice + '!'; 
 
-    container.appendChild(content);
+    container.appendChild(content); 
     
+    const score = document.createElement('div');
+    score.classList.add('score');
+    score.textContent = 'Punteggio: \nGiocatore: ' + playScore + '\nComputer: ' + computerScore;
+
+    container.appendChild(score); 
+
+
+    if (playScore === maxScore || computerScore === maxScore) {
+
+        let winning; 
+
+        if (playScore > computerScore){
+            winning = "YOU WIN THE FUCKING MATCH !!!! \n GOOD JOB"
+        }
+        else{
+            winning = "POOR LOOSER!!!"
+        }
+
+        const btn = document.querySelectorAll('.choice');
+        
+        btn.forEach(button => {
+            button.disabled = true;
+        });
+
+        const playAgain = document.createElement('button');
+        playAgain.classList.add ('playAgain');
+        playAgain.textContent = 'PLAY AGAIN';
+
+        const winningText = document.createElement('div');
+        winningText.classList.add('winningText');
+        winningText.textContent = winning;
+
+        container.appendChild(winningText);
+        container.appendChild(playAgain);
+
+
+        playAgain.addEventListener('click', function () {         
+            location.reload();
+        });
+    }
 }
-
-
-//interactive buttons
-const btn = document.querySelectorAll('.choice');
-
-btn.forEach(button => {
-    button.addEventListener('click', function () {
-        playRound(this.value);
-    });
-});
-
-
 

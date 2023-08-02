@@ -1,0 +1,14 @@
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: "Courier New", monospace;
+}
+
+h1 {
+    text-align: center;
+}
+
+#container {
+    display: flex;
+    justify-content: space-evenly;
+}

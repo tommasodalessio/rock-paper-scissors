@@ -2,6 +2,8 @@ body {
     display: flex;
     flex-direction: column;
     font-family: "Courier New", monospace;
+    color: aliceblue;
+    background-color: #26006e;
 }
 
 h1 {
@@ -10,5 +12,73 @@ h1 {
 
 #container {
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    height: 500px;
+}
+
+.buttons .choice[value="ROCK"] {
+    border: none;
+    width: 300px;
+    background-image: url('./img/rock.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.buttons .choice[value="PAPER"] {
+    border: none;
+    width: 300px;
+    background-image: url('./img/paper.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.buttons .choice[value="SCISSORS"] {
+    border: none;
+    width: 300px;
+    background-image: url('./img/scissor.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.winningText {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.playAgain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40%;
+    margin-right: 40%;
+    height: 75px;
+    border-radius: 30px;
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Courier New", monospace;
 }

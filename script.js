@@ -47,16 +47,25 @@ function playRound (playerChoice) {
 
     container.appendChild(score); 
 
+    const btn = document.querySelectorAll('.choice');
+
+    btn.forEach(button => {
+        button.addEventListener('click', function () {         
+            content.style.display = 'none';
+            score.style.display = 'none';
+        });
+    });
+
 
     if (playScore === maxScore || computerScore === maxScore) {
 
         let winning; 
 
         if (playScore > computerScore){
-            winning = "YOU WIN THE FUCKING MATCH !!!! \n GOOD JOB"
+            winning = "YOU WIN!\nGOOD JOB";
         }
         else{
-            winning = "POOR LOOSER!!!"
+            winning = "POOR LOOSER";
         }
 
         const btn = document.querySelectorAll('.choice');
